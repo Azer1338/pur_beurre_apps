@@ -1,0 +1,118 @@
+:root{
+    /* Colors */
+    --rooibos: #C45525;
+    --moules: #345A61;
+    --rigolo: #86EBE6;
+    --caramel: #DE9440;
+    --biscuit: #E8A75D;
+}
+
+/* Font */
+body{
+    font-family: "Scope One", sans-serif;
+    color: white;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Open Sans", sans-serif;
+    color: white;
+}
+
+p{
+    color: white;
+}
+
+/* Picture */
+img.imgLogo {
+    height: 35px;
+}
+
+/* Header */
+@media (min-width: 992px) {
+  #mainNav {
+    background-color: #C45525;
+  }
+  #mainNav .navbar-brand {
+    color: #DE9440;
+  }
+  #mainNav .navbar-brand:hover {
+    color: #E8A75D;
+  }
+}
+a .nav-item{
+    color: #DE9440;
+    }
+
+/* Footer */
+.footer{
+    background-color: #C45525!important;
+    }
+.text-muted{
+    color: #DE9440!important;
+    font-weight: bold;
+}
+
+
+/* Index page*/
+.index-image{
+    background-color:orange;
+    background-image:url(../img/greg-jeanneau-YTbFHT9_IhY-unsplash.jpg);
+    background-size: cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+}
+#about{
+    background-color: #DE9440!important;
+}
+#contact{
+    background-color: #86EBE6!important;
+}
+.icon{
+    color: #345A61!important;
+}
+img.character{
+    height: 10em;
+}
+
+/* Search page*/
+.result-image{
+
+}
+.aliment-picture-search{
+    height: 7em;
+    max-width: 7em;
+}
+.nutriscore{
+    position: absolute;
+    height:1em;
+    width:1em;
+    font-size:2em;
+    text-transform: capitalize;
+    background-color:#86EBE6;
+    border-radius:50%;
+}
+.alimentIcon{
+    margin :5px;
+}
+
+/* Details page*/
+.aliment-picture{
+    background-repeat: repeat space;
+}
+.offLink{
+    background-color:#345A61;
+    padding: 0.5em;
+    margin: 2em;
+}
+.alimentScoring{
+    font-size:2em;
+}
+.spacer{
+    margin: 1em;
+}
+
+/* Accounts page*/
+.myAccount-picture{
+    background-image:url(../img/greg-jeanneau-YTbFHT9_IhY-unsplash.jpg);
+}

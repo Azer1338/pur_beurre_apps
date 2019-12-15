@@ -1,0 +1,87 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Aliment Title Section -->
+<section class="page-section aliment-picture" id="search" style="background-image:url({{ aliment.picture_link }});">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2>
+                    {{ aliment.name }}
+                </h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Information Section -->
+<section class="page-section" id="about">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <!-- Nutriscore -->
+            <div class="col-lg-4 text-center">
+                <h3>
+                    Nutriscore
+                </h3>
+                {% if aliment.nutriscore == "a" %}
+                <p>
+                    <span class="alimentScoring"> A </span> b c d e
+                </p>
+                {% endif %}
+                {% if aliment.nutriscore == "b" %}
+                <p>
+                    a <span class="alimentScoring">B</span> c d e
+                </p>
+                {% endif %}
+                {% if aliment.nutriscore == "c" %}
+                <p>
+                    a b <span class="alimentScoring">C</span> d e
+                </p>
+                {% if aliment.nutriscore == "d" %}
+                <p>
+                    a b c <span class="alimentScoring">D</span> e
+                </p>
+                {% endif %}
+                {% if aliment.nutriscore == "e" %}
+                <p>
+                    a b c d <span class="alimentScoring">E</span>
+                </p>
+                {% endif %}
+                {% endif %}
+            </div>
+
+            <!-- Information -->
+            <div class="col-lg-8 text-center">
+                <h3>
+                    Repères nutritionnels pour 100gr
+                </h3>
+                <p id="reperesNutri">
+                    Energie: {{ aliment.energy }}kj <br>
+                    Gras: {{ aliment.fat }}g <br>
+                    Gras saturé: {{ aliment.fat_saturated }}g <br>
+                    Sucre: {{ aliment.sugar }}g <br>
+                    Sel: {{ aliment.salt }}g <br>
+                </p>
+            </div>
+
+            <!-- Open Food Facts link -->
+            <div class="col-lg-8 text-center spacer">
+                <a href="{{ aliment.url_link }}" class="offLink">Lien Open Food Facts</a>
+
+            </div>
+
+            <!-- Save it link -->
+            <div class="col-lg-8 text-center spacer">
+                <i class="far fa-save"></i>
+                <a href="">Sauvegarder</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+	
+{% endblock %}

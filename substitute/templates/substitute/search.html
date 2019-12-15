@@ -1,0 +1,106 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Aliment searched Section -->
+<section class="page-section bg-primary result-image" id="search" style="background-image:url({{ substitute.picture_link }});">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2>
+                    Résultats pour la requete:
+                </h2>
+                <h2>
+                    {{user_request}}
+                </h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Carrousel Section -->
+<section class="page-section" id="about">
+    <div class="container">
+        <div class="row justify-content-center">
+            {% if substitutes|length_is:"0" %}
+            <!-- No results found message -->
+            <div class="col-lg-8 text-center">
+                <p>Palsambleu! Nous n'avons trouvé aucun résultat à cette requête. </p>
+                <p>Même pas de quoi se ronger la chique !</p>
+            </div>
+
+            {% else %}
+            <div class="col-lg-8 text-center">
+                <!-- Results found message -->
+                <h2>{{ message }}</h2>
+
+                <!-- Spacer -->
+                <hr class="divider my-4">
+
+                <!-- Carrousel -->
+                <div class="row justify-content-center">
+
+                    {% for substitute in substitutes %}
+                    <!-- Per aliment -->
+                    <div class="col-lg-4 ">
+                        <div class="row">
+                            <div class="col text-center">
+                                <!-- Link -->
+                                <a href="/substitute/details/{{ substitute.id }}/">
+                                <!-- Nutriscore -->
+                                    <p class="nutriscore" >{{ substitute.nutriscore }}</p>
+                                <!-- Picture -->
+                                    <img class="aliment-picture-search" src="{{ substitute.picture_link }}" alt="SubstitutePicture">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <!-- Title -->
+                                <p class="aliment-name text-center"> {{  substitute.name }} </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center alimentIcon">
+                                <!-- Saving button -->
+                                <button type="button" class="btn btn-warning" onclick="window.location.href='/substitute/save/{{ substitute.id }}/'">
+                                <i class="far fa-save"></i>Sauvegarder
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        {% if paginate %}
+        <hr class="divider my-4">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-4 text-center">
+                {% if substitutes.has_previous %}
+                <a href="?userSearch={{ user_request }}&page={{ substitutes.previous_page_number }}">
+                    Précédent
+                </a>
+                {% endif %}
+
+            </div>
+            <div class="col-lg-4 text-center">
+                {% if substitutes.has_next %}
+                <a href="?userSearch={{ user_request }}&page={{ substitutes.next_page_number }}">
+                    Suivant
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+	
+{% endblock %}

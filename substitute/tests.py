@@ -62,31 +62,31 @@ class FavoritePageTestCase(TestCase):
 
 
 # initialise_database_view page
-class MockOpenFoodFactsAPIHandler():
-    """
-    Mock the OFF API handler
-    """
-    def __init__(self):
-        """No attributes to initialize.
-        """
-    def fetch_data_from_cat(self, category):
-        """
-        Return a JSON file.
-        """
-        api_answer = [
-
-        ]
-
-        return api_answer
+# class MockOpenFoodFactsAPIHandler():
+#     """
+#     Mock the OFF API handler
+#     """
+#     def __init__(self):
+#         """No attributes to initialize.
+#         """
+#     def fetch_data_from_cat(self, category):
+#         """
+#         Return a JSON file.
+#         """
+#         api_answer = [
+#
+#         ]
+#
+#         return api_answer
 
 
 class InitDBPageTestCase(TestCase):
     # Create a Mock
-    def mock_client(self):
-        """Mock the OFF API"""
-        return MockOpenFoodFactsAPIHandler()
-    # Mock up
-    monkeypatch.setattr(initialise_database_view, '',mock_client )
+    # def mock_client(self):
+    #     """Mock the OFF API"""
+    #     return MockOpenFoodFactsAPIHandler()
+    # # Mock up
+    # monkeypatch.setattr(initialise_database_view, '',mock_client )
 
     # test that page returns a 200
     def test_init_db_page_return_200(self):

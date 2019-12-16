@@ -1,6 +1,6 @@
 import requests
 
-from .variable import NUTRITION_SCORE, CATEGORIES_OPEN_FOOD_FACTS
+from substitute.variable import NUTRITION_SCORE, CATEGORIES_OPEN_FOOD_FACTS
 
 
 class OpenFoodFactsAPIHandler:
@@ -66,7 +66,7 @@ class OpenFoodFactsAPIHandler:
 
             # Add data in the larger json file
             self.api_answer.extend(data['products'])
-        print(self.api_answer)
+        # print(self.api_answer)
 
     def check_data_integrity(self, category_name):
         """Load the data if the whole details are

@@ -5,7 +5,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .data_base_handler import DataBaseTableHandler
 from .models import Aliment, UserLinkToAlimentsTable
 from .console_display import console_display
-from .open_food_facts_handler import OpenFoodFactsAPIHandler
+from substitute.open_food_facts_handler import OpenFoodFactsAPIHandler
 
 
 def search_view(request):

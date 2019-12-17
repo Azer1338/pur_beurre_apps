@@ -12,7 +12,3 @@ class Command(BaseCommand):
         aliment_table_handler.clear_table()
         favorite_table_handler = DataBaseTableHandler(UserLinkToAlimentsTable)
         favorite_table_handler.clear_table()
-
-        # Console display
-        print(aliment_table_handler.message)
-        print(favorite_table_handler.message)

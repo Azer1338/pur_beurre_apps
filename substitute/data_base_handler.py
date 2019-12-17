@@ -19,6 +19,10 @@ class DataBaseTableHandler:
         Load data in the table.
         :param json_file: data json file to load.
         """
+        # Status change
+        self.message = "Table is loading."
+        print(self.message)
+
         # Fill details and load it
         for elt in json_file:
             self.table_impacted.objects.create(code=elt['code'],
@@ -36,10 +40,11 @@ class DataBaseTableHandler:
 
         # Number of elements loaded
         self.list_loaded_length = len(json_file)
-        print(self.list_loaded_length)
+        print("Database size: " + str(self.list_loaded_length))
 
         # Status change
-        self.message = "Database loaded"
+        self.message = "Table loaded"
+        print(self.message)
 
     def clear_table(self):
         """
@@ -49,4 +54,5 @@ class DataBaseTableHandler:
         self.table_impacted.objects.all().delete()
 
         # Status change
-        self.message = "Database emptied"
+        self.message = "Table emptied"
+        print(self.message)

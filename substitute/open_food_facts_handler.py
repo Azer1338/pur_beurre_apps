@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 from substitute.variable import NUTRITION_SCORE, CATEGORIES_OPEN_FOOD_FACTS
@@ -51,8 +53,8 @@ class OpenFoodFactsAPIHandler:
                 "tag_contains_1": "contains",
                 "tag_1": "france",
 
-                "tagtype_2": "nutrition_grade_fr",
-                "tag_contains_2": "contains",
+                "tagtype_2": "product_name",
+                "tag_contains_2": "contains_not",
                 "tag_2": grade,
 
                 "sort_by": "product_name",
@@ -66,7 +68,12 @@ class OpenFoodFactsAPIHandler:
 
             # Add data in the larger json file
             self.api_answer.extend(data['products'])
+
+        with open('data.txt', mode="w", encoding='utf-8') as f:
+            json.dump(self.api_answer, f)
+
         # print(self.api_answer)
+
 
     def check_data_integrity(self, category_name):
         """Load the data if the whole details are
@@ -80,7 +87,7 @@ class OpenFoodFactsAPIHandler:
             # Make sure that all fields are available
             try:
                 columns_needed["code"] = (prod["code"])
-                columns_needed["product_name"] = prod["product_name"]
+                columns_needed["product_name"] = prod["product_name_fr"]
                 columns_needed["categories"] = category_name
                 columns_needed["energy_value"] = prod["nutriments"]["energy_value"]
                 columns_needed["fat_value"] = prod["nutriments"]["fat_value"]
@@ -90,6 +97,7 @@ class OpenFoodFactsAPIHandler:
                 columns_needed["nutrition_grade_fr"] = prod["nutrition_grade_fr"]
                 columns_needed["Open_food_facts_url"] = prod["url"]
                 columns_needed["image_thumb_url"] = prod["image_thumb_url"]
+
                 # Add dictionary in the list
                 self.substitutes_list.append(dict(columns_needed))
 

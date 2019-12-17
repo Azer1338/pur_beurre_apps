@@ -1,11 +1,10 @@
 
 # Selection of categories from Open Food Fact
 CATEGORIES_OPEN_FOOD_FACTS = ["Soda",
-                              "Saucisson",
-                              "Tarte",
-                              "Pate",
-                              "Legumes",
-                              "Fruit"
+                              # "Tarte",
+                              # "Pate",
+                              # "Legumes",
+                              # "Fruit"
                               ]
 
 # List of score to load in database

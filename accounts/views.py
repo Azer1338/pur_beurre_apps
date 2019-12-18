@@ -56,4 +56,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     template = loader.get_template('main/index.html')
+    # Message
+    messages.success(request, 'Bye bye amigo!')
+
     return HttpResponse(template.render(request=request))

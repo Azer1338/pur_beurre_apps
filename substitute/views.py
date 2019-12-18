@@ -159,7 +159,7 @@ def save_view(request, aliment_id):
     # Add the favorite aliment in the table
     UserLinkToAlimentsTable.objects.create(user_id=request.user, aliment_id=aliment_id)
 
-    messages.success(request, 'Profile details updated.')
+    messages.success(request, 'Aliment ajouté!')
 
     return redirect(request.META['HTTP_REFERER'])
 
@@ -175,53 +175,6 @@ def delete_view(request, aliment_id):
     # Add the favorite aliment in the table
     UserLinkToAlimentsTable.objects.filter(user_id=request.user, aliment_id=aliment_id).delete()
 
+    messages.success(request, 'Aliment retiré!')
+
     return redirect(request.META['HTTP_REFERER'])
-
-
-def initialise_database_view(request):
-    """
-    Load a few element in database.
-    :param request:
-    :return:
-    """
-    # Gather data from API
-    api_handler = OpenFoodFactsAPIHandler()
-    api_handler.generate_substitutes_dict()
-
-    # Load data in the database
-    aliment_table_handler = DataBaseTableHandler(Aliment)
-    aliment_table_handler.load_json_file_in_table(api_handler.substitutes_list)
-
-    console_display(aliment_table_handler.message)
-
-    # Content returned
-    context = {
-        # Return database status
-        'message': aliment_table_handler.message,
-    }
-
-    return render(request, 'substitute/000.html', context)
-
-
-def clear_table_view(request):
-    """
-    Clear the tables
-    """
-
-    # Remove data from table
-    aliment_table_handler = DataBaseTableHandler(Aliment)
-    aliment_table_handler.clear_table()
-    favorite_table_handler = DataBaseTableHandler(UserLinkToAlimentsTable)
-    favorite_table_handler.clear_table()
-
-    # Console display
-    console_display(aliment_table_handler.message)
-    console_display(favorite_table_handler.message)
-
-    # Content returned
-    context = {
-        # Return database status
-        'message': aliment_table_handler.message,
-    }
-
-    return render(request, 'substitute/000.html', context)

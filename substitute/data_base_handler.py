@@ -44,7 +44,7 @@ class DataBaseTableHandler:
 
         # Status change
         self.message = "Table loaded"
-        print(self.message)
+        print(str(self.table_impacted) +" "+ self.message)
 
     def clear_table(self):
         """
@@ -55,4 +55,4 @@ class DataBaseTableHandler:
 
         # Status change
         self.message = "Table emptied"
-        print(self.message)
+        print(str(self.table_impacted) +" "+ self.message)

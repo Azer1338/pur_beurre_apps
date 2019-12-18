@@ -53,9 +53,13 @@ class OpenFoodFactsAPIHandler:
                 "tag_contains_1": "contains",
                 "tag_1": "france",
 
-                "tagtype_2": "product_name",
-                "tag_contains_2": "contains_not",
+                "tagtype_2": "nutrition_grade_fr",
+                "tag_contains_2": "contains",
                 "tag_2": grade,
+
+                "tagtype_3": "product_name",
+                "tag_contains_3": "does_not_contain",
+                "tag_3": " ",
 
                 "sort_by": "product_name",
                 "page_size": 1,
@@ -69,12 +73,6 @@ class OpenFoodFactsAPIHandler:
             # Add data in the larger json file
             self.api_answer.extend(data['products'])
 
-        with open('data.txt', mode="w", encoding='utf-8') as f:
-            json.dump(self.api_answer, f)
-
-        # print(self.api_answer)
-
-
     def check_data_integrity(self, category_name):
         """Load the data if the whole details are
         available.
@@ -85,22 +83,23 @@ class OpenFoodFactsAPIHandler:
         # Format data
         for prod in self.api_answer:
             # Make sure that all fields are available
-            try:
-                columns_needed["code"] = (prod["code"])
-                columns_needed["product_name"] = prod["product_name_fr"]
-                columns_needed["categories"] = category_name
-                columns_needed["energy_value"] = prod["nutriments"]["energy_value"]
-                columns_needed["fat_value"] = prod["nutriments"]["fat_value"]
-                columns_needed["saturated-fat_value"] = prod["nutriments"]["saturated-fat_value"]
-                columns_needed["sugars_value"] = prod["nutriments"]["sugars_value"]
-                columns_needed["salt_value"] = prod["nutriments"]["salt_value"]
-                columns_needed["nutrition_grade_fr"] = prod["nutrition_grade_fr"]
-                columns_needed["Open_food_facts_url"] = prod["url"]
-                columns_needed["image_thumb_url"] = prod["image_thumb_url"]
+            if prod["product_name"]:
+                try:
+                    columns_needed["code"] = (prod["code"])
+                    columns_needed["product_name"] = prod["product_name"]
+                    columns_needed["categories"] = category_name
+                    columns_needed["energy_value"] = prod["nutriments"]["energy_value"]
+                    columns_needed["fat_value"] = prod["nutriments"]["fat_value"]
+                    columns_needed["saturated-fat_value"] = prod["nutriments"]["saturated-fat_value"]
+                    columns_needed["sugars_value"] = prod["nutriments"]["sugars_value"]
+                    columns_needed["salt_value"] = prod["nutriments"]["salt_value"]
+                    columns_needed["nutrition_grade_fr"] = prod["nutrition_grade_fr"]
+                    columns_needed["Open_food_facts_url"] = prod["url"]
+                    columns_needed["image_thumb_url"] = prod["image_thumb_url"]
 
-                # Add dictionary in the list
-                self.substitutes_list.append(dict(columns_needed))
+                    # Add dictionary in the list
+                    self.substitutes_list.append(dict(columns_needed))
 
-            # Pass if some details are not available
-            except KeyError:
-                pass
+                # Pass if some details are not available
+                except KeyError:
+                    pass

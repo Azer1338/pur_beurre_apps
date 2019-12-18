@@ -43,7 +43,7 @@ def login_view(request):
                 return redirect(request.POST.get('next'))
             else:
                 # Message
-                messages.success(request, 'You are now connected!')
+                messages.success(request, 'Bonjour!')
 
                 return redirect('main:index')
 

@@ -62,6 +62,7 @@
                                 <p class="aliment-name text-center"> {{  substitute.name }} </p>
                             </div>
                         </div>
+                        {% if user.is_authenticated %}
                         <div class="row">
                             <div class="col text-center alimentIcon">
                                 <!-- Saving button -->
@@ -70,6 +71,7 @@
                             </button>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                     {% endfor %}
 

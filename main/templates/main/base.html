@@ -40,29 +40,35 @@
 </head>
 
 <body id="page-top">
-
-        <!-- Message -->
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
-        <!-- Navigation -->
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container">
             <!-- Logo -->
             <a href="/">
                 <img class="navbar-toggler-icon js-scroll-trigger" src="{% static 'main/img/logo_pur_beurre.png'%}" alt="Pur beurre logo">
             </a>
+
             <!-- Site Web Title -->
-            <a class="navbar-brand js-scroll-trigger" href="/">Pur beurre</a>
+            <a class="navbar-brand js-scroll-trigger" href="/">
+                Pur beurre
+            </a>
+
             <!-- Toggle button on mobile -->
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <!-- Message -->
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
             <!-- Nav Button -->
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <!-- Search Button -->
@@ -73,12 +79,15 @@
                     </form>
 
                     {% if user.is_authenticated %}
+                    <!-- Account profil page -->
                     <li class="nav-item">
                         <a class="fa-stack" href="/accounts/myAccount" title="My account">
                             <i class="fa fa-circle fa-stack-2x nav-item"></i>
                             <i class="fas fa-user-alt fa-stack-1x fa-inverse"></i>
                         </a>
                     </li>
+
+                    <!-- Favorite page -->
                     <li class="nav-item">
                         <a class="fa-stack" href="/substitute/favorites" id="carrotButton" title="My favorites">
                             <i class="fa fa-circle fa-stack-2x nav-item"></i>
@@ -87,19 +96,24 @@
                             </i>
                         </a>
                     </li>
+
+                    <!-- Log out button -->
                     <li class="nav-item">
                         <a class="fa-stack" href="/accounts/logout/" id="logoutButton" title="Log out">
                             <i class="fa fa-circle fa-stack-2x nav-item"></i>
                             <i class="fas fa-sign-out-alt fa-stack-1x fa-inverse"></i>
                         </a>
                     </li>
+
                     {% else %}
+                    <!-- Log in button -->
                     <li class="nav-item">
                         <a class="fa-stack" href="/accounts/login" id="loginButton" title="Log in">
                             <i class="fa fa-circle fa-stack-2x nav-item"></i>
                             <i class="fas fa-sign-in-alt fa-stack-1x fa-inverse"></i>
                         </a>
                     </li>
+                    <!-- Sign in button -->
                     <li class="nav-item">
                         <a class="fa-stack" href="/accounts/signup" id="signUpButton" title="Sign up">
                             <i class="fa fa-circle fa-stack-2x nav-item"></i>
@@ -119,9 +133,20 @@
     <footer class="bg-light py-3 footer">
         <div class="container-fluid">
             <div class="row text-footer">
-                <a href="/mentions" class="col-5 small text-right text-muted">Mentions légales</a>
-                <div class="col-2 small text-center text-muted">2019</div>
-                <a href="/#contact" class="col-5 small text-left text-muted">Contact</a>
+                <!-- Mentions -->
+                <a href="/mentions" class="col-5 small text-right text-muted">
+                    Mentions légales
+                </a>
+
+                <!-- Footer -->
+                <div class="col-2 small text-center text-muted">
+                    2019
+                </div>
+
+                <!-- Contact section -->
+                <a href="/#contact" class="col-5 small text-left text-muted">
+                    Contact
+                </a>
             </div>
         </div>
     </footer>

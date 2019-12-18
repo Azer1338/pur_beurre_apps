@@ -1,6 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
@@ -22,6 +23,7 @@ def signup_view(request):
             # log in the user
             accounts_user = form.save()
             login(request, accounts_user)
+
             return redirect('main:index')
     else:
         form = UserCreationForm()
@@ -40,6 +42,9 @@ def login_view(request):
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
             else:
+                # Message
+                messages.success(request, 'You are now connected!')
+
                 return redirect('main:index')
 
     else:

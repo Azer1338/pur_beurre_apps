@@ -43,30 +43,77 @@ class SearchPageTestCase(TestCase):
         aliment_2.save()
 
     # test that page returns a 200
-    def test_search_page_return_200_without_search_word(self):
+    def test_search_page_without_search_word(self):
         response = self.client.get(reverse('substitute:search'), {'userSearch': ''})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(str(response.context['message']),
                          "Vous n'avez pas spécifié votre recherche. Voici notre liste."
                          )
 
-    def test_search_page_return_200_with_search_word(self):
+    def test_search_page_with_a_known_search_word(self):
         response = self.client.get(reverse('substitute:search'), {'userSearch': 'patate'})
         self.assertEqual(response.status_code, 200)
         self.assertNotEqual(str(response.context['message']),
-                         "Vous n'avez pas spécifié votre recherche. Voici notre liste."
-                         )
+                            "Vous n'avez pas spécifié votre recherche. Voici notre liste."
+                            )
         self.assertEqual(response.context['substitutes'].object_list[1].name,
                          "Oignons"
                          )
+        self.assertNotEqual(response.context['substitutes'].object_list[1].name,
+                            "Patate"
+                            )
+
+    def test_search_page_with_a_unknown_search_word(self):
+        response = self.client.get(reverse('substitute:search'), {'userSearch': 'chocolat'})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(str(response.context['message']),
+                            "Misère de misère, nous n'avons trouvé aucun résultat !"
+                            )
 
 
-    # test that index page returns a 200
+# detail_view Page
+class DetailPageTestCase(TestCase):
+
+    def setUp(self):
+        """ Load some aliment in the DB.
+        """
+
+        aliment_1 = Aliment.objects.create(
+            id="01",
+            code="1",
+            name="Patate",
+            category="legumes",
+            energy="1",
+            fat="1",
+            fat_saturated="1",
+            sugar="1",
+            salt="1",
+            nutrition_score="a",
+            url_link="http://google.com/1",
+            picture_link="http://google.com/1",
+        )
+        aliment_1.save()
+
+    # test that detail page returns a 200 if the item exists
+    def test_detail_page_return_200_if_item_exist(self):
+        # response = self.client.get(reverse('substitute:details'), {'userSearch': 'chocolat'})
+        response = self.client.get('/substitute/details/27217/')
+        self.assertEqual(response.status_code, 200)
+
     # test that detail page returns a 404 if the item does not exist
+    def test_detail_page_return_404_if_item_not_exist(self):
+        response = None
+        response.status_code = None
+        try:
+            response = self.client.get('/substitute/details/1/')
+        except FileExistsError:
+            pass
+
+        self.assertEqual(response.status_code, 200)
 
 
-# # detail_view Page
-# class DetailPageTestCase(TestCase):
+# # save_view page
+# class SavePageTestCase(TestCase):
 #
 #     def setUp(self):
 #         # aliment for testing
@@ -85,41 +132,6 @@ class SearchPageTestCase(TestCase):
 #             picture_link="http://google.com",
 #         )
 #         test_aliment.save()
-#
-#     # test that detail page returns a 200 if the item exists
-#     def test_detail_page_return_200_if_item_exist(self):
-#         response = self.client.get('/substitute/details/27217/')
-#         self.assertEqual(response.status_code, 200)
-#
-#     # test that detail page returns a 404 if the item does not exist
-#     def test_detail_page_return_404_if_item_not_exist(self):
-#         response = None
-#         response.status_code = None
-#         try:
-#             response = self.client.get('/substitute/details/11111/')
-#         except FileExistsError:
-#             pass
-#
-#         self.assertEqual(response.status_code, 200)
-
-# # save_view page
-# class SavePageTestCase(TestCase):
-#
-#     # def __init__(self):
-#     #     # Aliment
-#     #     self.aliment = {
-#     #         "code": "123459",
-#     #         "product_name": "Patato",
-#     #         "categories": "legumes",
-#     #         "energy_value": "100",
-#     #         "fat_value": "101",
-#     #         "saturated-fat_value": "102",
-#     #         "sugars_value": "103",
-#     #         "salt_value": "104",
-#     #         "nutrition_grade_fr": "a",
-#     #         "Open_food_facts_url": "openfoodfacts/patate.com",
-#     #         "image_thumb_url": "openfoodfacts/patatepic.com",
-#     #     }
 #
 #     # test that page returns a 200
 #     def test_save_page_return_200(self):

@@ -65,16 +65,16 @@ def search_view(request):
     return render(request, 'substitute/search.html', context)
 
 
-def detail_view(request, aliment_id):
+def detail_view(request, aliment_code):
     """
     Display the details of an aliment.
     :param request:
-    :param aliment_id:
+    :param aliment_code:
     :return:
     """
 
     # Get the aliment from his id
-    aliment = Aliment.objects.get(pk=aliment_id)
+    aliment = Aliment.objects.get(code=aliment_code)
 
     context = {
         'aliment': aliment,
@@ -160,7 +160,7 @@ def delete_view(request, aliment_id):
     """
     Remove the aliment selected as favorite in the database
     :param request:
-    :param aliment_id:
+    :param aliment_code:
     :return:
     """
 

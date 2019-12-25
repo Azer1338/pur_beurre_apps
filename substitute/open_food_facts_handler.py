@@ -1,5 +1,3 @@
-import json
-
 import requests
 
 from substitute.variable import NUTRITION_SCORE, CATEGORIES_OPEN_FOOD_FACTS
@@ -33,7 +31,7 @@ class OpenFoodFactsAPIHandler:
         """
         Fetch aliments from specific :categories
         from the API through an HTTP instruction.
-        Specify the Nutriscore wished.
+        Specify the nutrition_score wished.
         """
         # Empty list
         self.api_answer.clear()

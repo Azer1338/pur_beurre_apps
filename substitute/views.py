@@ -1,11 +1,9 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, redirect
 
-from .data_base_handler import DataBaseTableHandler
-from .models import Aliment, UserLinkToAlimentsTable
 from .console_display import console_display
-from substitute.open_food_facts_handler import OpenFoodFactsAPIHandler
+from .models import Aliment, UserLinkToAlimentsTable
 
 
 def search_view(request):
@@ -33,7 +31,9 @@ def search_view(request):
             # Look for similar aliment
             message = "Vous pouvez remplacer cet aliment par:"
             # Collect a list of aliment with the same categories
-            aliment_list = Aliment.objects.filter(category__icontains=aliment_name[0].category).order_by('nutriscore')
+            aliment_list = Aliment.objects.\
+                filter(category__icontains=aliment_name[0].category).\
+                order_by('nutrition_score')
 
     else:
         # No query send

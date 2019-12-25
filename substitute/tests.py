@@ -1,13 +1,12 @@
 from django.test import TestCase
-from django.urls import reverse
 
 from .models import Aliment
 
 
 # class AlimentTestCase(TestCase):
 #     def setUp(self):
-#         self.test1 = Aliment.objects.create(code = 3274510004644, name = "Dolin Sirop D Orgeat", category = "Boissons", energy = 345, fat = 0, fat_saturated = 0, sugar = 86, salt = 0.03, nutriscore = "e", url_link = 'https://fr.openfoodfacts.org/produit/3274510004644/dolin-sirop-d-orgeat-marie-dolin', picture_link='https://static.openfoodfacts.org/images/products/327/451/000/4644/front_fr.4.100.jpg')
-#         self.test2 = Aliment.objects.create(code = 7616700020267, name = "Feinste Leckerli", category = "Snacks", energy = 1681, fat = 7, fat_saturated = 0.6, sugar = 46, salt = 0.05, nutriscore = "d", url_link = 'https://fr.openfoodfacts.org/produit/7616700020267/feinste-leckerli-jowa', picture_link='https://static.openfoodfacts.org/images/products/761/670/002/0267/front_fr.21.100.jpg')
+#         self.test1 = Aliment.objects.create(code = 3274510004644, name = "Dolin Sirop D Orgeat", category = "Boissons", energy = 345, fat = 0, fat_saturated = 0, sugar = 86, salt = 0.03, nutrition_score = "e", url_link = 'https://fr.openfoodfacts.org/produit/3274510004644/dolin-sirop-d-orgeat-marie-dolin', picture_link='https://static.openfoodfacts.org/images/products/327/451/000/4644/front_fr.4.100.jpg')
+#         self.test2 = Aliment.objects.create(code = 7616700020267, name = "Feinste Leckerli", category = "Snacks", energy = 1681, fat = 7, fat_saturated = 0.6, sugar = 46, salt = 0.05, nutrition_score = "d", url_link = 'https://fr.openfoodfacts.org/produit/7616700020267/feinste-leckerli-jowa', picture_link='https://static.openfoodfacts.org/images/products/761/670/002/0267/front_fr.21.100.jpg')
 #
 #     def testdb(self):
 #         test = Aliment.objects.filter(code=3274510004644)
@@ -40,7 +39,7 @@ class DetailPageTestCase(TestCase):
             fat_saturated="1",
             sugar="1",
             salt="1",
-            nutriscore="a",
+            nutrition_score="a",
             url_link="http://google.com",
             picture_link="http://google.com",
         )
@@ -57,11 +56,10 @@ class DetailPageTestCase(TestCase):
         response.status_code = None
         try:
             response = self.client.get('/substitute/details/11111/')
-        except:
+        except FileExistsError:
             pass
 
         self.assertEqual(response.status_code, 200)
-
 
 # # save_view page
 # class SavePageTestCase(TestCase):

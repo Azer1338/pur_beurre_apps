@@ -1,11 +1,4 @@
-from importlib import import_module
-
-from django.conf import settings
-from django.contrib import auth
-from django.contrib.auth import login
-from django.contrib.auth.models import User
-from django.http import HttpRequest
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse
 
 from accounts.models import MyUser
@@ -16,7 +9,11 @@ class AccountPageTestCase(TestCase):
 
     def setUp(self):
         # Create a user for testing
-        test_user = MyUser.objects.create_user(email="Franco13@.com", first_name="claude", name="francois", password="Chanson")
+        test_user = MyUser.objects.create_user(email="Franco13@.com",
+                                               first_name="claude",
+                                               name="francois",
+                                               password="Chanson"
+                                               )
         test_user.save()
 
     # test that page returns a 200

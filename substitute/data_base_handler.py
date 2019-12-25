@@ -33,7 +33,7 @@ class DataBaseTableHandler:
                                                fat_saturated=elt['saturated-fat_value'],
                                                sugar=elt['sugars_value'],
                                                salt=elt['salt_value'],
-                                               nutriscore=elt['nutrition_grade_fr'],
+                                               nutrition_score=elt['nutrition_grade_fr'],
                                                url_link=elt['Open_food_facts_url'],
                                                picture_link=elt['image_thumb_url'],
                                                )
@@ -44,7 +44,7 @@ class DataBaseTableHandler:
 
         # Status change
         self.message = "Table loaded"
-        print(str(self.table_impacted) +" "+ self.message)
+        print(str(self.table_impacted) + " " + self.message)
 
     def clear_table(self):
         """
@@ -55,4 +55,4 @@ class DataBaseTableHandler:
 
         # Status change
         self.message = "Table emptied"
-        print(str(self.table_impacted) +" "+ self.message)
+        print(str(self.table_impacted) + " " + self.message)

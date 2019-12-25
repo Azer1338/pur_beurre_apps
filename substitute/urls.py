@@ -1,6 +1,7 @@
 from django.conf.urls import url
+# import views so we can use them in urls.py.
+from . import views
 
-from . import views # import views so we can use them in urls.py.
 
 app_name = 'substitute'
 

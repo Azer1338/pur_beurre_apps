@@ -1,12 +1,12 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template import loader
 
 
 def index_view(request):
-    template = loader.get_template('main/index.html')
-    return HttpResponse(template.render(request=request))
+    return render(request, 'main/index.html')
 
 
 def mentions_view(request):
-    template = loader.get_template('main/mentions.html')
-    return HttpResponse(template.render(request=request))
+    return render(request, 'main/mentions.html')
+

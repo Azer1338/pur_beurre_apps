@@ -27,30 +27,35 @@
                 <h3>
                     Nutrition Score
                 </h3>
+
                 {% if aliment.nutrition_score == "a" %}
                 <p>
                     <span class="alimentScoring"> A </span> b c d e
                 </p>
                 {% endif %}
+
                 {% if aliment.nutrition_score == "b" %}
                 <p>
                     a <span class="alimentScoring">B</span> c d e
                 </p>
                 {% endif %}
+
                 {% if aliment.nutrition_score == "c" %}
                 <p>
                     a b <span class="alimentScoring">C</span> d e
                 </p>
+                {% endif %}
+
                 {% if aliment.nutrition_score == "d" %}
                 <p>
                     a b c <span class="alimentScoring">D</span> e
                 </p>
                 {% endif %}
+
                 {% if aliment.nutrition_score == "e" %}
                 <p>
                     a b c d <span class="alimentScoring">E</span>
                 </p>
-                {% endif %}
                 {% endif %}
             </div>
 

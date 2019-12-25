@@ -1,8 +1,6 @@
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
-
-from .console_display import console_display
 from .models import Aliment, UserLinkToAlimentsTable
 
 
@@ -15,8 +13,6 @@ def search_view(request):
 
     # Collect the User's request
     query = request.GET.get('userSearch')
-    # Display
-    console_display("User's request: " + str(query))
 
     # Ensure that the query is filled
     if query:

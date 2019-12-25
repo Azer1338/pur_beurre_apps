@@ -51,6 +51,7 @@ def login_view(request):
     return render(request, 'accounts/login.html', {'form': form})
 
 
+@login_required(login_url="/accounts/login/")
 def logout_view(request):
     logout(request)
     template = loader.get_template('main/index.html')

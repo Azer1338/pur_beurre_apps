@@ -80,11 +80,8 @@ def detail_view(request, aliment_id):
     # Get the aliment from his id
     aliment = Aliment.objects.get(pk=aliment_id)
 
-    messages.add_message(request, messages.INFO, 'Hello world.')
-
     context = {
         'aliment': aliment,
-        # 'messages': messages,
     }
 
     return render(request, 'substitute/details.html', context)

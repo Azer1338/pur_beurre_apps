@@ -18,7 +18,7 @@ class AccountPageTestCase(TestCase):
 
     # test that page returns a 200
     def test_account_page_return_200_when_user_connected(self):
-        # User is authentified
+        # User is authenticated
         self.client.login(username="Franco13@.com", password="Chanson")
         response = self.client.get(reverse('accounts:myAccount'))
 
@@ -26,10 +26,11 @@ class AccountPageTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_account_page_return_200_when_user_not_connected(self):
-        # User is authentified
+        # User is authenticated
         response = self.client.get(reverse('accounts:myAccount'))
 
         self.assertNotEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 404)
 
 
 # signup_view page

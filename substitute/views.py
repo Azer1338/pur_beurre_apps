@@ -18,7 +18,7 @@ def search_view(request):
     # Collect the User's request
     query = request.GET.get('userSearch')
     # Display
-    console_display("User's request: " + query)
+    console_display("User's request: " + str(query))
 
     # Ensure that the query is filled
     if query:
@@ -80,7 +80,6 @@ def detail_view(request, aliment_id):
     # Get the aliment from his id
     aliment = Aliment.objects.get(pk=aliment_id)
 
-    print(aliment)
     messages.add_message(request, messages.INFO, 'Hello world.')
 
     context = {
@@ -97,7 +96,7 @@ def favorites_view(request):
     :param request:
     :return:
     """
-    favorite_list =0
+    favorite_list = 0
 
     # Ensure that an user is authentified
     if request.user.is_authenticated:

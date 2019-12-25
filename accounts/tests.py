@@ -1,19 +1,38 @@
-from django.test import TestCase
+from importlib import import_module
+
+from django.conf import settings
+from django.contrib import auth
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.http import HttpRequest
+from django.test import TestCase, Client
 from django.urls import reverse
+
+from accounts.models import MyUser
 
 
 # my_account_view page
 class AccountPageTestCase(TestCase):
+
+    def setUp(self):
+        # Create a user for testing
+        test_user = MyUser.objects.create_user(email="Franco13@.com", first_name="claude", name="francois", password="Chanson")
+        test_user.save()
+
     # test that page returns a 200
-    def test_account_page_return_200(self):
+    def test_account_page_return_200_when_user_connected(self):
+        # User is authentified
+        self.client.login(username="Franco13@.com", password="Chanson")
         response = self.client.get(reverse('accounts:myAccount'))
+
+        self.assertEqual(str(response.context['user']), "Franco13@.com")
         self.assertEqual(response.status_code, 200)
 
-        #
-    # def test_index_page(self):
-    #     # response = self.client.get(reverse('myAccount'))
-    #     # self.assertEqual(response.status_code, 200)
-    #     self.assertEqual("a","a")
+    def test_account_page_return_200_when_user_not_connected(self):
+        # User is authentified
+        response = self.client.get(reverse('accounts:myAccount'))
+
+        self.assertNotEqual(response.status_code, 200)
 
 
 # signup_view page

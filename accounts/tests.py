@@ -8,8 +8,9 @@ from accounts.models import MyUser
 class AccountPageTestCase(TestCase):
 
     def setUp(self):
-        """Create a user for testing.
+        """ Set up variables before launching tests.
         """
+        # Creation of an user
         test_user = MyUser.objects.create_user(email="Franco13@.com",
                                                first_name="claude",
                                                name="francois",
@@ -17,18 +18,18 @@ class AccountPageTestCase(TestCase):
                                                )
         test_user.save()
 
-    # test that page returns 200
-    def test_account_page_return_200_when_user_connected(self):
-        # User is authenticated
+    # test page returns 200
+    def test_account_page_return_200_when_user_is_connected(self):
+        # Authenticate an user
         self.client.login(username="Franco13@.com", password="Chanson")
         response = self.client.get(reverse('accounts:myAccount'))
-
+        # Look for the user
         self.assertEqual(str(response.context['user']), "Franco13@.com")
+
         self.assertEqual(response.status_code, 200)
 
-    # test that page doesn't return 200
-    def test_account_page_return_200_when_user_not_connected(self):
-        # User is not authenticated
+    # test page doesn't return 200
+    def test_account_page_return_200_when_user_is_not_connected(self):
         response = self.client.get(reverse('accounts:myAccount'))
 
         self.assertNotEqual(response.status_code, 200)
@@ -37,33 +38,39 @@ class AccountPageTestCase(TestCase):
 # signup_view page
 class SignupPageTestCase(TestCase):
 
-    # test that page returns a 200
-    def test_signup_page_return_200_without_a_POST_method(self):
-        # Request contains doesn't contain a POST
+    # test page returns a 200
+    def test_signup_page_return_200_on_GET_method(self):
         response = self.client.get(reverse('accounts:signup'))
+
         self.assertEqual(response.status_code, 200)
 
-    def test_signup_page_return_200_with_a_POST_method(self):
-        # Request contains doesn't contain a POST
-        response = self.client.post(reverse('accounts:signup'), data={'email': 'hubert.f@gmail.com',
-                                                                      'first_name': 'hubert',
-                                                                      'name': 'f'})
+    # test page returns a 200
+    def test_signup_page_return_200_on_POST_method(self):
+        # Request comes with authentication data
+        response = self.client.post(reverse('accounts:signup'),
+                                    data={'email': 'hubert.f@gmail.com',
+                                          'first_name': 'hubert',
+                                          'name': 'f'})
+
         self.assertEqual(response.status_code, 200)
 
 
 # login_view page
 class LoginPageTestCase(TestCase):
 
-    # test that page returns a 200
-    def test_login_page_return_200_without_a_POST_method(self):
-        # Request contains doesn't contain a POST
+    # test page returns a 200
+    def test_login_page_return_200_on_GET_method(self):
         response = self.client.get(reverse('accounts:login'))
+
         self.assertEqual(response.status_code, 200)
 
+    # test page returns a 200
     def test_login_page_return_200_with_a_POST_method(self):
-        # Request contains doesn't contain a POST
-        response = self.client.post(reverse('accounts:signup'), data={'username': 'hubert.f@gmail.com',
-                                                                      'password': 'hubert'})
+        # Request comes with authentication data
+        response = self.client.post(reverse('accounts:signup'),
+                                    data={'username': 'hubert.f@gmail.com',
+                                          'password': 'hubert'})
+
         self.assertEqual(response.status_code, 200)
 
 
@@ -71,8 +78,9 @@ class LoginPageTestCase(TestCase):
 class LogoutPageTestCase(TestCase):
 
     def setUp(self):
-        """Create a user for testing.
+        """ Set up variables before launching tests.
         """
+        # Creation of an user
         test_user = MyUser.objects.create_user(email="Franco13@.com",
                                                first_name="claude",
                                                name="francois",
@@ -80,17 +88,20 @@ class LogoutPageTestCase(TestCase):
                                                )
         test_user.save()
 
-    # test that page returns a 200
-    def test_logout_page_return_200_when_user_connected(self):
-        # Connect an user
+        # Authenticate an user
         self.client.login(username="Franco13@.com", password="Chanson")
-        # Disconnect him
+
+    # test that page returns a 200
+    def test_logout_page_return_200_when_user_is_connected(self):
+        # Disconnect the user
         response = self.client.get(reverse('accounts:logout'))
+        # Check that an user is connected
         self.assertNotEqual(str(response.context['user']), "Franco13@.com")
+
         self.assertEqual(response.status_code, 200)
 
-# test that page returns a 200
+    # test that page returns a 200
     def test_logout_page_return_200_when_user_not_connected(self):
         response = self.client.get(reverse('accounts:logout'))
-        self.assertNotEqual(response.status_code, 200)
 
+        self.assertEqual(response.status_code, 200)

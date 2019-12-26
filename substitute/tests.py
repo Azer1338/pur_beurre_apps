@@ -181,55 +181,80 @@ class FavoritePageTestCase(TestCase):
                          "Misère de misère, vous n'avez encore pas enregistrer de favoris !"
                          )
 
-# # save_view page
-# class SavePageTestCase(TestCase):
-#     aliment_1 = Aliment.objects.create(
-#         id="01",
-#         code="1",
-#         name="Patate",
-#         category="legumes",
-#         energy="1",
-#         fat="1",
-#         fat_saturated="1",
-#         sugar="1",
-#         salt="1",
-#         nutrition_score="a",
-#         url_link="http://google.com/1",
-#         picture_link="http://google.com/1",
-#     )
-#     aliment_1.save()
-#
-#     test_user_1 = MyUser.objects.create_user(email="Franco13@.com",
-#                                              first_name="claude",
-#                                              name="francois",
-#                                              password="Chanson"
-#                                              )
-#     test_user_1.save()
-#
-#     # test that page returns a 200
-#     def test_save_page_return_200(self):
-#         # URL return
-#
-#         # Send a url
-#         response = self.client.get(reverse('substitute:save', args=[1231]))
-#         self.assertEqual(response.status_code, 200)
-#     # test that index page returns a 200
 
-#
-#
-# # save_view page
-# class DeletePageTestCase(TestCase):
-#     # test that page returns a 200
-#     def test_delete_page_return_200(self):
-#         response = self.client.get(reverse('substitute:delete'))
-#         self.assertEqual(response.status_code, 200)
-#     # test that index page returns a 200
-#
-#
-# # favorites_view page
-# class FavoritePageTestCase(TestCase):
-#     # test that page returns a 200
-#     def test_favorite_page_return_200(self):
-#         response = self.client.get(reverse('substitute:favorites'))
-#         self.assertEqual(response.status_code, 200)
-#     # test that index page returns a 200
+# save_view page
+class SavePageTestCase(TestCase):
+
+    def setUp(self):
+        """ Load some aliment in the DB.
+        """
+
+        aliment_1 = Aliment.objects.create(
+            id="01",
+            code="1",
+            name="Patate",
+            category="legumes",
+            energy="1",
+            fat="1",
+            fat_saturated="1",
+            sugar="1",
+            salt="1",
+            nutrition_score="a",
+            url_link="http://google.com/1",
+            picture_link="http://google.com/1",
+        )
+        aliment_1.save()
+
+        test_user_1 = MyUser.objects.create_user(email="Franco13@.com",
+                                                 first_name="claude",
+                                                 name="francois",
+                                                 password="Chanson"
+                                                 )
+        test_user_1.save()
+        # User is authenticated
+        self.client.login(username="Franco13@.com", password="Chanson")
+
+    # test that page returns a 302
+    def test_save_page_with_a_known_item(self):
+
+        response = self.client.get('/substitute/save/1/', HTTP_REFERER='/substitute/favorites/')
+        self.assertRedirects(response, '/substitute/favorites/', status_code=302)
+
+
+# save_view page
+class DeletePageTestCase(TestCase):
+
+    def setUp(self):
+        """ Load some aliment in the DB.
+        """
+
+        aliment_1 = Aliment.objects.create(
+            id="01",
+            code="1",
+            name="Patate",
+            category="legumes",
+            energy="1",
+            fat="1",
+            fat_saturated="1",
+            sugar="1",
+            salt="1",
+            nutrition_score="a",
+            url_link="http://google.com/1",
+            picture_link="http://google.com/1",
+        )
+        aliment_1.save()
+
+        test_user_1 = MyUser.objects.create_user(email="Franco13@.com",
+                                                 first_name="claude",
+                                                 name="francois",
+                                                 password="Chanson"
+                                                 )
+        test_user_1.save()
+        # User is authenticated
+        self.client.login(username="Franco13@.com", password="Chanson")
+
+    # test that page returns a 302
+    def test_delete_page_with_a_known_item(self):
+
+        response = self.client.get('/substitute/delete/1/', HTTP_REFERER='/substitute/favorites/')
+        self.assertRedirects(response, '/substitute/favorites/', status_code=302)

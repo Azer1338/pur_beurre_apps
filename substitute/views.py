@@ -160,7 +160,7 @@ def delete_view(request, aliment_id):
     """
     Remove the aliment selected as favorite in the database
     :param request:
-    :param aliment_code:
+    :param aliment_id:
     :return:
     """
 

@@ -266,3 +266,55 @@ class DeletePageTestCase(TestCase):
         response = self.client.get('/substitute/delete/1/', HTTP_REFERER='/substitute/favorites/')
         # Check the redirection
         self.assertRedirects(response, '/substitute/favorites/', status_code=302)
+
+
+# Aliment model
+class AlimentTest(TestCase):
+
+    def create_aliment(self,
+                       id="01",
+                       code="1",
+                       name="Patate",
+                       category="legumes",
+                       energy="1",
+                       fat="1",
+                       fat_saturated="1",
+                       sugar="1",
+                       salt="1",
+                       nutrition_score="a",
+                       url_link="http://google.com/1",
+                       picture_link="http://google.com/1",
+                       ):
+        return Aliment.objects.create(id=id,
+                                      code=code,
+                                      name=name,
+                                      category=category,
+                                      energy=energy,
+                                      fat=fat,
+                                      fat_saturated=fat_saturated,
+                                      sugar=sugar,
+                                      salt=salt,
+                                      nutrition_score=nutrition_score,
+                                      url_link=url_link,
+                                      picture_link=picture_link,
+                                      )
+
+    def test_myUser_creation(self):
+        a = self.create_aliment()
+        self.assertTrue(isinstance(a, Aliment))
+
+
+# UserLinkToAlimentsTable model
+class UserLinkToAlimentsTableTest(TestCase):
+
+    def create_userLinkToAlimentsTable(self,
+                                       user_id="01",
+                                       aliment_id="10",
+                                       ):
+        return UserLinkToAlimentsTable.objects.create(user_id=user_id,
+                                                      aliment_id=aliment_id,
+                                                      )
+
+    def test_myUser_creation(self):
+        u = self.create_userLinkToAlimentsTable()
+        self.assertTrue(isinstance(u, UserLinkToAlimentsTable))

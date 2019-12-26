@@ -107,7 +107,7 @@ class LogoutPageTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-# MyUserManager model
+# MyUser model
 class MyUserTest(TestCase):
 
     def create_myUser(self, email="bobo@genoise.mousse", first_name="bob", name="o"):

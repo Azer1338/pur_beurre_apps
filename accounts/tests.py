@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from django_forms_test import FormTest, field
+from django_forms_test import FormTest, field, cleaned
 
 from accounts.forms import RegisterForm, MyUserAdminCreationForm
 from accounts.models import MyUser

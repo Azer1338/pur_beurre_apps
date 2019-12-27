@@ -118,47 +118,47 @@ class MyUserTest(TestCase):
         u = self.create_myUser()
         self.assertTrue(isinstance(u, MyUser))
 
-    # # Forms
-    # def test_registerForm_valid_form(self):
-    #     u = MyUser.objects.create_user(email='bobo@sfr.fr',
-    #                                    first_name='bob',
-    #                                    name='o'
-    #                                    )
-    #     data = {'email': u.email,
-    #             }
-    #     form = RegisterForm(data=data)
-    #
-    #     self.assertTrue(form.is_valid())
-    #
-    # def test_registerForm_invalid_form(self):
-    #     u = MyUser.objects.create_user(email='bobo@sfr.fr',
-    #                                    first_name='bob',
-    #                                    name='o'
-    #                                    )
-    #     data = {'email': u.email,
-    #             }
-    #     form = RegisterForm(data=data)
-    #
-    #     self.assertFalse(form.is_valid())
-    #
-    # def test_myUserAdminCreationForm_valid_form(self):
-    #     u = MyUser.objects.create_user(email='bobo@sfr.fr',
-    #                                    first_name='bob',
-    #                                    name='o'
-    #                                    )
-    #     data = {'email': u.email,
-    #             }
-    #     form = RegisterForm(data=data)
-    #
-    #     self.assertTrue(form.is_valid())
-    #
-    # def test_myUserAdminCreationForm_invalid_form(self):
-    #     u = MyUser.objects.create_user(email='bobo@sfr.fr',
-    #                                    first_name='bob',
-    #                                    name='o'
-    #                                    )
-    #     data = {'email': u.email,
-    #             }
-    #     form = RegisterForm(data=data)
-    #
-    #     self.assertFalse(form.is_valid())
+    # Forms
+    def test_registerForm_valid_form(self):
+        u = MyUser.objects.create_user(email='bobo@sfr.fr',
+                                       first_name='bob',
+                                       name='o'
+                                       )
+        data = {'email': u.email,
+                }
+        form = RegisterForm(data=data)
+
+        self.assertTrue(form.is_valid())
+
+    def test_registerForm_invalid_form(self):
+        u = MyUser.objects.create_user(email='bobo@sfr.fr',
+                                       first_name='bob',
+                                       name='o'
+                                       )
+        data = {'email': u.email,
+                }
+        form = RegisterForm(data=data)
+
+        self.assertFalse(form.is_valid())
+
+    def test_myUserAdminCreationForm_valid_form(self):
+        u = MyUser.objects.create_user(email='bobo@sfr.fr',
+                                       first_name='bob',
+                                       name='o'
+                                       )
+        data = {'email': u.email,
+                }
+        form = RegisterForm(data=data)
+
+        self.assertTrue(form.is_valid())
+
+    def test_myUserAdminCreationForm_invalid_form(self):
+        u = MyUser.objects.create_user(email='bobo@sfr.fr',
+                                       first_name='bob',
+                                       name='o'
+                                       )
+        data = {'email': u.email,
+                }
+        form = RegisterForm(data=data)
+
+        self.assertFalse(form.is_valid())

@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from accounts.forms import RegisterForm, UserAdminCreationForm
+from accounts.forms import RegisterForm, MyUserAdminCreationForm
 from accounts.models import MyUser
 
 
@@ -110,6 +110,7 @@ class LogoutPageTestCase(TestCase):
 # MyUser model
 class MyUserTest(TestCase):
 
+    # Models
     def create_myUser(self, email="bobo@genoise.mousse", first_name="bob", name="o"):
         return MyUser.objects.create_user(email=email, first_name=first_name, name=name, password=None)
 
@@ -117,15 +118,16 @@ class MyUserTest(TestCase):
         u = self.create_myUser()
         self.assertTrue(isinstance(u, MyUser))
 
-
-# RegisterForm form
-class RegisterFormTest(TestCase):
-
+    # Forms
     def test_registerForm_valid_form(self):
-        u = MyUser.objects.create_user(email="bobo@genoise.mousse", first_name="bob", name="o")
+        u = MyUser.objects.create_user(email="bobo@sfr.fr",
+                                       first_name="bob",
+                                       name="o"
+                                       )
         data = {'email': u.email,
-                'first_name': u.name,
-                'name': "o",
+                'first_name': u.first_name,
+                'name': u.name,
+
                 }
         form = RegisterForm(data=data)
         self.assertTrue(form.is_valid())

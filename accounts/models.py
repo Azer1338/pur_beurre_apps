@@ -22,8 +22,8 @@ class MyUserManager(BaseUserManager):
 
     def create_superuser(self, email, first_name, name, password):
         """
-        Creates and saves a superuser with the given email, date of
-        birth and password.
+        Creates and saves a superuser with the given email, first name,
+         name and password.
         """
         user = self.create_user(
             email,
@@ -46,7 +46,7 @@ class MyUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    first_name = models.CharField(max_length=50, unique=False, default="Jean")
+    first_name = models.CharField(max_length=50, unique=False, default="Sarah")
     name = models.CharField(max_length=50, unique=False, default="ValJean")
 
     is_active = models.BooleanField(default=True)

@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
+from django_forms_test import FormTest, field
+
 from accounts.forms import RegisterForm, MyUserAdminCreationForm
 from accounts.models import MyUser
 
@@ -107,7 +109,7 @@ class LogoutPageTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-# MyUser model
+# MyUser models
 class MyUserTest(TestCase):
 
     # Models
@@ -118,47 +120,23 @@ class MyUserTest(TestCase):
         u = self.create_myUser()
         self.assertTrue(isinstance(u, MyUser))
 
-    # Forms
-    def test_registerForm_valid_form(self):
-        u = MyUser.objects.create_user(email='bobo@sfr.fr',
-                                       first_name='bob',
-                                       name='o'
-                                       )
-        data = {'email': u.email,
-                }
-        form = RegisterForm(data=data)
 
-        self.assertTrue(form.is_valid())
+# RegisterForm form
+class RegisterFormTest(FormTest):
 
-    def test_registerForm_invalid_form(self):
-        u = MyUser.objects.create_user(email='bobo@sfr.fr',
-                                       first_name='bob',
-                                       name='o'
-                                       )
-        data = {'email': u.email,
-                }
-        form = RegisterForm(data=data)
+    form = RegisterForm
+    required_fields = [
+        ('email', field.EMAIL),
+        ('password', field.PASSWORD),
+        ('password2', field.PASSWORD),
+    ]
 
-        self.assertFalse(form.is_valid())
 
-    def test_myUserAdminCreationForm_valid_form(self):
-        u = MyUser.objects.create_user(email='bobo@sfr.fr',
-                                       first_name='bob',
-                                       name='o'
-                                       )
-        data = {'email': u.email,
-                }
-        form = RegisterForm(data=data)
-
-        self.assertTrue(form.is_valid())
-
-    def test_myUserAdminCreationForm_invalid_form(self):
-        u = MyUser.objects.create_user(email='bobo@sfr.fr',
-                                       first_name='bob',
-                                       name='o'
-                                       )
-        data = {'email': u.email,
-                }
-        form = RegisterForm(data=data)
-
-        self.assertFalse(form.is_valid())
+# MyUserAdminCreationForm form
+class MyUserAdminCreationFormTest(FormTest):
+    form = MyUserAdminCreationForm
+    required_fields = [
+        ('email', field.EMAIL),
+        ('password1', field.PASSWORD),
+        ('password2', field.PASSWORD),
+    ]

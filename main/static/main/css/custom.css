@@ -34,6 +34,10 @@ p{
     color: white;
 }
 
+.color-background{
+    background-color: #345A61;
+    color: #E8A75D;
+}
 /* Picture */
 img.imgLogo {
     height: 35px;
@@ -120,7 +124,10 @@ img.character{
 
 /* Details page*/
 .aliment-picture{
-    background-repeat: repeat space;
+    background-repeat: round;
+    background-size: 10%;
+    opacity: 1;
+    filter: contrast(120%);
 }
 .offLink{
     background-color:#345A61;

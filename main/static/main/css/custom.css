@@ -8,9 +8,20 @@
 }
 
 /* Font */
-body{
+html, body{
     font-family: "Scope One", sans-serif;
     color: white;
+    height: 100%;
+}
+
+.wrapper{
+    min-height: 100%;
+    margin-bottom: -100px;
+    padding-bottom: 100px;
+}
+
+footer{
+    height:100px;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -75,6 +86,17 @@ img.character{
     height: 10em;
 }
 
+.btn-amber{
+    background-color: #DE9440;
+    color: white;
+    border-color: #DE9440;
+    font-size: 1.2em;
+}
+
+.form{
+    padding:2em;
+}
+
 /* Search page*/
 .result-image{
 
@@ -115,4 +137,9 @@ img.character{
 /* Accounts page*/
 .myAccount-picture{
     background-image:url(../img/greg-jeanneau-YTbFHT9_IhY-unsplash.jpg);
+}
+
+/* Sign up page*/
+.site-form{
+    color: black;
 }

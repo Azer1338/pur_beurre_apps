@@ -5,7 +5,7 @@
 {% block content %}
 
 <!-- Search Section -->
-<section class="page-section bg-primary index-image" id="search">
+<section class="page-section bg-primary index-image wrapper" id="search">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
@@ -16,10 +16,11 @@
                 <h2>
                     Trouvez un produit de substitution pour ceux que vous consommez tous les jours.
                 </h2>
+
                 <!-- Search field -->
-                <form action="{% url 'substitute:search' %}" method="get" accept-charset="utf-8">
-                    <input type="search" name="userSearch" value="Produit" class="userSearch" id="UserRequest">
-                    <button class="userSearch nav-item">Chercher</button>
+                <form action="{% url 'substitute:search' %}" method="get" accept-charset="utf-8" class="form">
+                    <input class="form-control userSearch" type="search" name="userSearch" value="Produit" id="UserRequest">
+                    <button class="btn btn-amber btn-outline-warning btn-rounded btn-sm ml-3">Chercher</button>
                 </form>
             </div>
         </div>
@@ -27,7 +28,7 @@
 </section>
 
 <!-- About Section -->
-<section class="page-section bg-secondary" id="about">
+<section class="page-section bg-secondary wrapper" id="about">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
@@ -54,7 +55,7 @@
 </section>
 
 <!-- Contact Section -->
-<section class="page-section" id="contact">
+<section class="page-section wrapper" id="contact">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">

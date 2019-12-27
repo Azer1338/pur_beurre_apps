@@ -5,7 +5,7 @@
 {% block content %}
 
 <!-- Aliment searched Section -->
-<section class="page-section bg-primary result-image" id="search" style="background-image:url({{ substitute.picture_link }});">
+<section class="page-section bg-primary result-image wrapper" id="search" style="background-image:url({{ substitute.picture_link }});">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
@@ -18,7 +18,7 @@
 </section>
 
 <!-- Carrousel Section -->
-<section class="page-section" id="about">
+<section class="page-section wrapper" id="about">
     <div class="container">
         <div class="row justify-content-center">
             {% if substitutes|length_is:"0" %}

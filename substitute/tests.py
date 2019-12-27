@@ -1,7 +1,11 @@
+from unittest.mock import MagicMock
+
 from django.test import TestCase
 from django.urls import reverse
 from accounts.models import MyUser
+from .data_base_handler import DataBaseTableHandler
 from .models import Aliment, UserLinkToAlimentsTable
+from .open_food_facts_handler import OpenFoodFactsAPIHandler
 
 
 # search_view page
@@ -318,3 +322,90 @@ class UserLinkToAlimentsTableTest(TestCase):
     def test_myUser_creation(self):
         u = self.create_userLinkToAlimentsTable()
         self.assertTrue(isinstance(u, UserLinkToAlimentsTable))
+
+
+# OpenFoodFactsAPIHandler
+class OpenFoodFactsAPIHandlerTest(TestCase):
+
+    def test_open_food_facts_handler_creation(self):
+        handler = OpenFoodFactsAPIHandler()
+
+        self.assertEqual(handler.api_answer, [])
+        self.assertEqual(handler.substitutes_list, [])
+        self.assertEqual(handler.filter_status, None)
+
+    def test_open_food_facts_handler_api_mock(self):
+        handler = OpenFoodFactsAPIHandler()
+        # Mock the API call
+        handler.fetch_data_from_cat = MagicMock(return_value=0)
+        handler.api_answer = [{'code': '01',
+                               'product_name': 'test name',
+                               'category_name': 'test cat',
+                               'nutriments': {'energy_value': '03',
+                                              'fat_value': '03',
+                                              'saturated-fat_value': '03',
+                                              'sugars_value': '03',
+                                              'salt_value': '03'},
+                               'nutrition_grade_fr': 'test nut',
+                               'url': 'google.com',
+                               'image_thumb_url': 'google.com/test',
+                               }]
+
+        # Keep going on process
+        handler.generate_substitutes_dict()
+
+        self.assertEqual(handler.substitutes_list, [{'code': '01',
+                                                     'product_name': 'test name',
+                                                     'categories': 'Soda',
+                                                     'energy_value': '03',
+                                                     'fat_value': '03',
+                                                     'saturated-fat_value': '03',
+                                                     'sugars_value': '03',
+                                                     'salt_value': '03',
+                                                     'nutrition_grade_fr': 'test nut',
+                                                     'Open_food_facts_url': 'google.com',
+                                                     'image_thumb_url': 'google.com/test',
+                                                     }])
+
+
+# DataBaseTableHandler
+class DataBaseTableHandlerTest(TestCase):
+
+    def test_database_handler_creation(self):
+        table_test = Aliment
+        handler = DataBaseTableHandler(table_test)
+
+        self.assertEqual(handler.table_impacted, table_test)
+        self.assertEqual(handler.list_loaded_length, 0)
+        self.assertEqual(handler.message, 'Initiate')
+
+    def test_load_data_in_aliment_table(self):
+        table_test = Aliment
+        handler = DataBaseTableHandler(table_test)
+        table_to_load = [{'code': '01',
+                          'product_name': 'test name',
+                          'categories': 'Soda',
+                          'energy_value': '03',
+                          'fat_value': '03',
+                          'saturated-fat_value': '03',
+                          'sugars_value': '03',
+                          'salt_value': '03',
+                          'nutrition_grade_fr': 'test nut',
+                          'Open_food_facts_url': 'google.com',
+                          'image_thumb_url': 'google.com/test',
+                          }]
+
+        # Load in table
+        handler.load_json_file_in_table(table_to_load)
+
+        # Collect from Database
+        list_from_table = table_test.objects.all()
+
+        for elt in list_from_table:
+            name = elt.name
+
+        self.assertEqual(handler.message, "Table loaded")
+        self.assertEqual(name, 'test name')
+
+
+

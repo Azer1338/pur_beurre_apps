@@ -127,7 +127,8 @@ class MyUserTest(TestCase):
         data = {'email': u.email,
                 'first_name': u.first_name,
                 'name': u.name,
-
+                'password': 'tutu',
+                'password2': 'tutu',
                 }
         form = RegisterForm(data=data)
         self.assertTrue(form.is_valid())

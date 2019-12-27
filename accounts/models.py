@@ -46,8 +46,8 @@ class MyUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    first_name = models.CharField(max_length=50, unique=False, default="Sarah")
-    name = models.CharField(max_length=50, unique=False, default="ValJean")
+    first_name = models.CharField(max_length=50, unique=False)
+    name = models.CharField(max_length=50, unique=False)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

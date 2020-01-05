@@ -31,7 +31,7 @@ else:
     DEBUG = True
 
 # Allow the access to
-ALLOWED_HOSTS = ['purbeurreapps.herokuapp.com']
+ALLOWED_HOSTS = ['purbeurreazer.herokuapp.com']
 # if os.environ.get('ENV') == 'PRODUCTION':
 #     ALLOWED_HOSTS = ['purbeurreapps.herokuapp.com']
 # else:

@@ -22,8 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', '4i&u(!%shd*0-3$ls)fohsjsd48t(gu%1-ch_wyzk7@#n3bd8e')
-# '-~aO;| F;rE[??/w^zcumh(9'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'yn)%cc*v0#1c^0_l646^f-ci9p^zb7cd-@1w7uof68(t7f(5mw')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
@@ -85,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'Pur_beurre_apps.wsgi.application'
+WSGI_APPLICATION = 'Pur_beurre_apps.wsgi.application'
 
 
 # Database

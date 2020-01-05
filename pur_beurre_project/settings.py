@@ -21,20 +21,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY', '4i&u(!%shd*0-3$ls)fohsjsd48t(gu%1-ch_wyzk7@#n3bd8e')
+# '-~aO;| F;rE[??/w^zcumh(9'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
 else:
     DEBUG = True
 
-# Secret key for the CSRF
-SECRET_KEY = os.environ.get('SECRET_KEY', 'vH%lN?k@^|FqQDkB%Z0N+V6`')  # development key for the moment
-
 # Allow the access to
-if os.environ.get('ENV') == 'PRODUCTION':
-    ALLOWED_HOSTS = ['purbeurreapps.herokuapp.com']
-else:
-    ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['purbeurreapps.herokuapp.com']
+# if os.environ.get('ENV') == 'PRODUCTION':
+#     ALLOWED_HOSTS = ['purbeurreapps.herokuapp.com']
+# else:
+#     ALLOWED_HOSTS = []
 
 # Application definition
 AUTH_USER_MODEL = 'accounts.MyUser'
@@ -83,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'Pur_beurre_apps.wsgi.application'
+WSGI_APPLICATION = 'Pur_beurre_apps.wsgi.application'
 
 
 # Database
@@ -126,9 +128,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
 
@@ -145,6 +147,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATIC_URL = '/static/'
 
+# Django debug toolbar
+INTERNAL_IPS = ['127.0.0.1']
+
 if os.environ.get('ENV') == 'PRODUCTION':
 
     # Static files settings
@@ -153,12 +158,12 @@ if os.environ.get('ENV') == 'PRODUCTION':
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
     # Extra places for collectstatic to find static files.
-    STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),
-                        )
-
-    # Specific static file manager
+    STATICFILES_DIRS = (
+        os.path.join(PROJECT_ROOT, 'static'),
+    )
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-    # Specific way to manage the db
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)

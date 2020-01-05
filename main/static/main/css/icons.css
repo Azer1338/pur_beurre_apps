@@ -1,7 +1,5 @@
 @font-face {
-    font-family: "Générales";
-    src:url('./fonts/Générales.ttf') format('truetype'),
-        url('./fonts/Générales.svg#') format('svg');
+    font-family: Georgia, serif;
     font-weight: normal;
     font-style: normal;
 }
@@ -19,15 +17,13 @@
 }
 
 @font-face {
-    font-family: "Icônes de Colette et Remy";
-    src:url('./fonts/Icônes-de-Colette-et-Remy.ttf') format('truetype'),
-        url('./fonts/Icônes-de-Colette-et-Remy.svg#') format('svg');
+    font-family: Georgia, serif;
     font-weight: normal;
     font-style: normal;
 }
 
 .library-Icônes-de-Colette-et-Remy [class^="icon-"], .library-Icônes-de-Colette-et-Remy [class*="icon-"] {
-    font-family: "Icônes de Colette et Remy";
+    font-family: Georgia, serif;
     speak: none;
     font-style: normal;
     font-weight: normal;

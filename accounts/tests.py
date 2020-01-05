@@ -113,7 +113,7 @@ class LogoutPageTestCase(TestCase):
 class MyUserTest(TestCase):
 
     # Models
-    def create_myUser(self, email="bobo@genoise.mousse", first_name="bob", name="o"):
+    def test_create_myUser(self, email="bobo@genoise.mousse", first_name="bob", name="o"):
         return MyUser.objects.create_user(email=email, first_name=first_name, name=name, password=None)
 
     def test_myUser_creation(self):

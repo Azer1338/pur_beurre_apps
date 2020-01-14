@@ -7,21 +7,21 @@
     --biscuit: #E8A75D;
 }*/
 
-/* Font */
+/* FONT */
 html, body{
     font-family: "Scope One", sans-serif;
     color: white;
     height: 100%;
 }
 
-.wrapper{
-    min-height: 100%;
-    margin-bottom: -100px;
-    padding-bottom: 100px;
+footer{
+    height:50px;
 }
 
-footer{
-    height:100px;
+.wrapper{
+    min-height: 100%;
+    margin-bottom: -50px;
+    padding-bottom: 50px;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -32,18 +32,15 @@ h1, h2, h3, h4, h5, h6,
 
 p{
     color: white;
+    font-size: 1.2em;
 }
 
-.color-background{
-    background-color: #345A61;
-    color: #E8A75D;
-}
-/* Picture */
-img.imgLogo {
+/* PICTURE */
+img.favoriteIcon {
     height: 35px;
 }
 
-/* Header */
+/* HEADER */
 @media (min-width: 992px) {
   #mainNav {
     background-color: #C45525;
@@ -59,7 +56,7 @@ a .nav-item{
     color: #DE9440;
     }
 
-/* Footer */
+/* FOOTER */
 .footer{
     background-color: #C45525!important;
     }
@@ -69,8 +66,8 @@ a .nav-item{
 }
 
 
-/* Index page*/
-.index-image{
+/* INDEX PAGE */
+.indexImage{
     background-color:orange;
     background-image:url(../img/greg-jeanneau-YTbFHT9_IhY-unsplash2.jpg);
     background-size: cover;
@@ -101,29 +98,43 @@ img.character{
     padding:2em;
 }
 
-/* Search page*/
-.result-image{
+/* SEARCH PAGE */
+.resultImage{
 
 }
-.aliment-picture-search{
+.alimentSearchedImage{
     height: 7em;
     max-width: 7em;
 }
-.nutrition_score{
+.nutritionScoreIcon{
     position: absolute;
-    height:1em;
-    width:1em;
-    font-size:2em;
-    text-transform: capitalize;
-    background-color:#86EBE6;
-    border-radius:50%;
+    background: #97c83e;
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
 }
 .alimentIcon{
     margin :5px;
 }
 
-/* Details page*/
-.aliment-picture{
+.SubstituteItem{
+    padding: 5px 0px 5px 0px;
+}
+
+.alimentName{
+    min-height: 58px;
+}
+
+/* DETAILS PAGE */
+.alimentPicture{
     background-repeat: round;
     background-size: 10%;
     opacity: 1;
@@ -141,12 +152,12 @@ img.character{
     margin: 1em;
 }
 
-/* Accounts page*/
-.myAccount-picture{
+/* ACCOUNTS PAGE */
+.myAccountPicture{
     background-image:url(../img/greg-jeanneau-YTbFHT9_IhY-unsplash2.jpg);
 }
 
-/* Sign up page*/
+/* SIGN UP PAGE */
 .site-form{
     color: black;
 }

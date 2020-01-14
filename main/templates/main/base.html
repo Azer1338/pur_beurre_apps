@@ -73,7 +73,7 @@
                 <ul class="navbar-nav ml-auto my-2 my-lg-0">
                     <!-- Search field -->
                     <form action="{% url 'substitute:search' %}" method="get" accept-charset="utf-8">
-                        <input type="search" name="userSearch" value="Chercher" class="userSearch" id="UserRequest">
+                        <input type="search" name="userSearch" placeholder="Chercher" class="userSearch" id="UserRequest">
                     </form>
 
                     {% if user.is_authenticated %}
@@ -90,7 +90,7 @@
                         <a class="fa-stack" href="/substitute/favorites" id="carrotButton" title="My favorites">
                             <i class="fa fa-circle fa-stack-2x nav-item"></i>
                             <i class="fa  fa-stack-1x">
-                                <img class="imgLogo  nav-item" src="{% static 'main/img/carrot_white.png'%}">
+                                <img class="favoriteIcon  nav-item" src="{% static 'main/img/carrot_white.png'%}">
                             </i>
                         </a>
                     </li>

@@ -5,7 +5,7 @@
 {% block content %}
 
 <!-- Search Section -->
-<section class="page-section bg-primary index-image wrapper" id="search">
+<section class="page-section bg-primary indexImage wrapper" id="search">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
@@ -19,7 +19,7 @@
 
                 <!-- Search field -->
                 <form action="{% url 'substitute:search' %}" method="get" accept-charset="utf-8" class="form">
-                    <input class="form-control userSearch" type="search" name="userSearch" value="Produit" id="UserRequest">
+                    <input class="form-control userSearch" type="search" name="userSearch" placeholder="Produit" id="UserRequest">
                     <button class="btn btn-amber btn-outline-warning btn-rounded btn-sm ml-3">Chercher</button>
                 </form>
             </div>

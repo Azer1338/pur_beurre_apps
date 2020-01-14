@@ -5,7 +5,7 @@
 {% block content %}
 
 <!-- Aliment searched Section -->
-<section class="page-section bg-primary result-image" id="search" style="background-image:url({{ substitute.picture_link }});">
+<section class="page-section bg-primary resultImage" id="search" style="background-image:url({{ substitute.picture_link }});">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
@@ -44,22 +44,25 @@
 
                     {% for substitute in substitutes %}
                     <!-- Per aliment -->
-                    <div class="col-lg-4 ">
+                    <div class="col-lg-4 SubstituteItem">
                         <div class="row">
                             <div class="col text-center">
                                 <!-- Link -->
                                 <a href="/substitute/details/{{ substitute.code }}/">
                                 <!-- nutrition_score -->
-                                    <p class="nutrition_score" >{{ substitute.nutrition_score }}</p>
+                                    <div class="nutritionScoreIcon">
+                                        {{ substitute.nutrition_score }}
+                                    </div>
+
                                 <!-- Picture -->
-                                    <img class="aliment-picture-search" src="{{ substitute.picture_link }}" alt="SubstitutePicture">
+                                    <img class="alimentSearchedImage" src="{{ substitute.picture_link }}" alt="SubstitutePicture">
                                 </a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col text-center">
                                 <!-- Title -->
-                                <p class="aliment-name text-center"> {{  substitute.name }} </p>
+                                <p class="alimentName text-center"> {{  substitute.name }} </p>
                             </div>
                         </div>
                         {% if user.is_authenticated %}

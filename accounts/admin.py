@@ -3,17 +3,17 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from .models import MyUser
+from .models import PurBeurreUser
 
 
-class MyUserCreationForm(forms.ModelForm):
+class PurBeurreUserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
-        model = MyUser
+        model = PurBeurreUser
         fields = ('email', 'first_name', 'name')
 
     def clean_password2(self):
@@ -41,7 +41,7 @@ class MyUserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
-        model = MyUser
+        model = PurBeurreUser
         fields = ('email', 'first_name', 'name', 'password', 'is_active', 'is_admin')
 
     def clean_password(self):
@@ -54,7 +54,7 @@ class MyUserChangeForm(forms.ModelForm):
 class MyUserAdmin(BaseUserAdmin):
     # The forms to add and change user instances
     form = MyUserChangeForm
-    add_form = MyUserCreationForm
+    add_form = PurBeurreUserCreationForm
 
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
@@ -87,7 +87,7 @@ class MyUserAdmin(BaseUserAdmin):
 
 
 # Now register the new UserAdmin...
-admin.site.register(MyUser, MyUserAdmin)
+admin.site.register(PurBeurreUser, MyUserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)

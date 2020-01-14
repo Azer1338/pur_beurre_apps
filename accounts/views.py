@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
-from .admin import MyUserCreationForm
+from .admin import PurBeurreUserCreationForm
 
 
 @login_required(login_url="/accounts/login/")
@@ -15,7 +15,7 @@ def my_account_view(request):
 
 def signup_view(request):
     if request.method == 'POST':
-        form = MyUserCreationForm(request.POST)
+        form = PurBeurreUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             # log in the user
@@ -24,7 +24,7 @@ def signup_view(request):
 
             return redirect('main:index')
     else:
-        form = MyUserCreationForm()
+        form = PurBeurreUserCreationForm()
 
     return render(request, 'accounts/signup.html', {'form': form})
 

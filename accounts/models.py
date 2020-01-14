@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
-class MyUserManager(BaseUserManager):
+class PurBeurreUserManager(BaseUserManager):
     def create_user(self, email, first_name, name, password=None):
         """
         Creates and saves a User with the given email, first name, name and password.
@@ -36,7 +36,7 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-class MyUser(AbstractBaseUser):
+class PurBeurreUser(AbstractBaseUser):
     """
     Customize the User sign in.
     """
@@ -52,7 +52,7 @@ class MyUser(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
-    objects = MyUserManager()
+    objects = PurBeurreUserManager()
 
     USERNAME_FIELD = 'email'
 

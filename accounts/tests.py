@@ -1,9 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
-from django_forms_test import FormTest, field, cleaned
+from django_forms_test import FormTest, field
 
 from accounts.forms import RegisterForm, MyUserAdminCreationForm
-from accounts.models import MyUser
+from accounts.models import PurBeurreUser
 
 
 # my_account_view page
@@ -13,11 +13,11 @@ class AccountPageTestCase(TestCase):
         """ Set up variables before launching tests.
         """
         # Creation of an user
-        test_user = MyUser.objects.create_user(email="Franco13@.com",
-                                               first_name="claude",
-                                               name="francois",
-                                               password="Chanson"
-                                               )
+        test_user = PurBeurreUser.objects.create_user(email="Franco13@.com",
+                                                      first_name="claude",
+                                                      name="francois",
+                                                      password="Chanson"
+                                                      )
         test_user.save()
 
     # test page returns 200
@@ -83,11 +83,11 @@ class LogoutPageTestCase(TestCase):
         """ Set up variables before launching tests.
         """
         # Creation of an user
-        test_user = MyUser.objects.create_user(email="Franco13@.com",
-                                               first_name="claude",
-                                               name="francois",
-                                               password="Chanson"
-                                               )
+        test_user = PurBeurreUser.objects.create_user(email="Franco13@.com",
+                                                      first_name="claude",
+                                                      name="francois",
+                                                      password="Chanson"
+                                                      )
         test_user.save()
 
         # Authenticate an user
@@ -114,11 +114,11 @@ class MyUserTest(TestCase):
 
     # Models
     def test_create_myUser(self, email="bobo@genoise.mousse", first_name="bob", name="o"):
-        return MyUser.objects.create_user(email=email, first_name=first_name, name=name, password=None)
+        return PurBeurreUser.objects.create_user(email=email, first_name=first_name, name=name, password=None)
 
     def test_myUser_creation(self):
         u = self.create_myUser()
-        self.assertTrue(isinstance(u, MyUser))
+        self.assertTrue(isinstance(u, PurBeurreUser))
 
 
 # RegisterForm form

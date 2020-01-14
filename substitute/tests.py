@@ -2,7 +2,7 @@ from unittest.mock import MagicMock
 
 from django.test import TestCase
 from django.urls import reverse
-from accounts.models import MyUser
+from accounts.models import PurBeurreUser
 from .data_base_handler import DataBaseTableHandler
 from .models import Aliment, UserLinkToAlimentsTable
 from .open_food_facts_handler import OpenFoodFactsAPIHandler
@@ -155,11 +155,11 @@ class FavoritePageTestCase(TestCase):
         aliment_2.save()
 
         # Creation of an user
-        test_user_1 = MyUser.objects.create_user(email="Franco13@.com",
-                                                 first_name="claude",
-                                                 name="francois",
-                                                 password="Chanson"
-                                                 )
+        test_user_1 = PurBeurreUser.objects.create_user(email="Franco13@.com",
+                                                        first_name="claude",
+                                                        name="francois",
+                                                        password="Chanson"
+                                                        )
         test_user_1.save()
         # User is authenticated
         self.client.login(username="Franco13@.com", password="Chanson")
@@ -218,11 +218,11 @@ class SavePageTestCase(TestCase):
         aliment_1.save()
 
         # Creation of an user
-        test_user_1 = MyUser.objects.create_user(email="Franco13@.com",
-                                                 first_name="claude",
-                                                 name="francois",
-                                                 password="Chanson"
-                                                 )
+        test_user_1 = PurBeurreUser.objects.create_user(email="Franco13@.com",
+                                                        first_name="claude",
+                                                        name="francois",
+                                                        password="Chanson"
+                                                        )
         test_user_1.save()
         # User is authenticated
         self.client.login(username="Franco13@.com", password="Chanson")
@@ -257,11 +257,11 @@ class DeletePageTestCase(TestCase):
         aliment_1.save()
 
         # Creation of an user
-        test_user_1 = MyUser.objects.create_user(email="Franco13@.com",
-                                                 first_name="claude",
-                                                 name="francois",
-                                                 password="Chanson"
-                                                 )
+        test_user_1 = PurBeurreUser.objects.create_user(email="Franco13@.com",
+                                                        first_name="claude",
+                                                        name="francois",
+                                                        password="Chanson"
+                                                        )
         test_user_1.save()
         # User is authenticated
         self.client.login(username="Franco13@.com", password="Chanson")

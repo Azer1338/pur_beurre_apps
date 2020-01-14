@@ -1,5 +1,5 @@
 from django import forms
-from accounts.models import MyUser
+from accounts.models import PurBeurreUser
 
 
 class RegisterForm(forms.ModelForm):
@@ -7,12 +7,12 @@ class RegisterForm(forms.ModelForm):
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
 
     class Meta:
-        model = MyUser
+        model = PurBeurreUser
         fields = ('email',)
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        qs = MyUser.objects.filter(email=email)
+        qs = PurBeurreUser.objects.filter(email=email)
         if qs.exists():
             raise forms.ValidationError("email is taken")
         return email
@@ -33,7 +33,7 @@ class MyUserAdminCreationForm(forms.ModelForm):
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
-        model = MyUser
+        model = PurBeurreUser
         fields = ('email',)
 
     def clean_password2(self):

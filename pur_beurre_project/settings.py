@@ -32,7 +32,7 @@ else:
 
 # Allow the access to
 if os.environ.get('ENV') == 'PRODUCTION':
-    ALLOWED_HOSTS = ['purbeurreapps.herokuapp.com']
+    ALLOWED_HOSTS = ['https://purbeurreazer.herokuapp.com/']
 else:
     ALLOWED_HOSTS = []
 

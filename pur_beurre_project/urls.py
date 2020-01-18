@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls'), name="accounts"),
 ]
 
-# if settings.DEBUG:
-#     urlpatterns = [
-#         url(r'^__debug__/', include(debug_toolbar.urls)),
-#     ] + urlpatterns
+if settings.DEBUG:
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

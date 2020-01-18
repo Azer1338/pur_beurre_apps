@@ -25,11 +25,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', 'yn)%cc*v0#1c^0_l646^f-ci9p^zb7cd-@1w7uof68(t7f(5mw')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# if os.environ.get('ENV') == 'PRODUCTION':
-#     DEBUG = False
-# else:
-#     DEBUG = True
+# DEBUG = False
+if os.environ.get('ENV') == 'PRODUCTION':
+    DEBUG = False
+else:
+    DEBUG = True
 
 # Allow the access to
 ALLOWED_HOSTS = ['purbeurreazer.herokuapp.com']

@@ -31,11 +31,10 @@ else:
     DEBUG = True
 
 # Allow the access to
-ALLOWED_HOSTS = ['purbeurreazer.herokuapp.com']
-# if os.environ.get('ENV') == 'PRODUCTION':
-#     ALLOWED_HOSTS = ['https://purbeurreazer.herokuapp.com/']
-# else:
-#     ALLOWED_HOSTS = []
+if os.environ.get('ENV') == 'PRODUCTION':
+    ALLOWED_HOSTS = ['purbeurreazer.herokuapp.com']
+else:
+    ALLOWED_HOSTS = []
 
 # Application definition
 AUTH_USER_MODEL = 'accounts.PurBeurreUser'

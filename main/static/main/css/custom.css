@@ -107,26 +107,24 @@ img.character{
     max-width: 7em;
 }
 .nutritionScoreIcon{
-    position: absolute;
-    background: #97c83e;
+    background: #C45525;
     width: 2em;
     height: 2em;
+
     border-radius: 100%;
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 1em;
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
 }
+
 .alimentIcon{
     margin :5px;
 }
 
 .SubstituteItem{
-    padding: 5px 0px 5px 0px;
+    border: 5px solid #DE9440;
+    background-color: #345A61;
 }
 
 .alimentName{

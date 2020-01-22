@@ -78,20 +78,19 @@
                 <a href="{{ aliment.url_link }}" class="offLink">Lien Open Food Facts</a>
 
             </div>
+
+            <!-- SAVE -->
+            {% if user.is_authenticated %}
+            <div class="col-lg-8 text-center spacer">
+                <a href="/substitute/save/{{ substitute.id }}/" class="offLink">
+                    <i class="far fa-save"></i>SAVE
+                </a>
+            </div>
+            {% endif %}
+
         </div>
 
-        <!-- Save button -->
-        {% if user.is_authenticated %}
-        <div class="row justify-content-center">
-            <!-- Save it link -->
-            <div class="col text-center alimentIcon">
-                <!-- Saving button -->
-                <button type="button" class="btn btn-warning" onclick="window.location.href='/substitute/save/{{ aliment.id }}/'">
-                    <i class="far fa-save"></i>Sauvegarder
-                </button>
-            </div>
-        </div>
-        {% endif %}
+
 
     </div>
 </section>

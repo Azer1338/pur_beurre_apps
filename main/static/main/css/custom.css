@@ -125,6 +125,7 @@ img.character{
 .SubstituteItem{
     border: 5px solid #DE9440;
     background-color: #345A61;
+    border-radius: 10%;
 }
 
 .alimentName{

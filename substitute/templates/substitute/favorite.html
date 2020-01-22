@@ -40,33 +40,44 @@
 
                     {% for substitute in substitutes %}
                     <!-- Per aliment -->
-                    <div class="col-lg-4 ">
+                    <div class="col-lg-4  SubstituteItem">
+                        <!-- NUTRISCORE -->
                         <div class="row">
-                            <div class="col text-center">
-                                <!-- Link -->
-                                <a href="/substitute/details/{{ substitute.id }}">
-                                <!-- nutrition_score -->
-                                    <p class="nutritionScoreIcon" >{{ substitute.nutrition_score }}</p>
-                                <!-- Picture -->
-                                    <div class="col text-center">
-                                        <img class="alimentSearchedImage" src="{{ substitute.picture_link }}" alt="SubstitutePicture">
-                                    </div>
-                                </a>
+                            <div class="col-lg-10">
+
+                            </div>
+                            <div class="col-lg-1 nutritionScoreIcon">
+                            {{ substitute.nutrition_score }}
                             </div>
                         </div>
+                        <!-- PICTURE -->
                         <div class="row">
-                            <div class="col text-center">
-                                <!-- Title -->
-                                <p class="alimentName text-center"> {{  substitute.name }} </p>
+                            <div class="col">
+                                <img class="alimentSearchedImage" src="{{ substitute.picture_link }}" alt="SubstitutePicture">
                             </div>
                         </div>
+                        <!-- TITLE -->
                         <div class="row">
-                            <div class="col text-center alimentIcon">
-                                <!-- Saving button -->
-                                <button type="button" class="btn btn-warning" onclick="window.location.href='/substitute/delete/{{ substitute.id }}'">
-                                <i class="far fa-save"></i> Supprimer
-                            </button>
+                            <div class="col" style="height: 50px;">
+                                {{  substitute.name }}
                             </div>
+                        </div>
+                        <!-- BUTTON -->
+                        <div class="row">
+                            <!-- INFO -->
+                            <div class="col">
+                                    <a href="/substitute/details/{{ substitute.code }}/">
+                                        INFO
+                                    </a>
+                            </div>
+                            <!-- SAVE -->
+                            {% if user.is_authenticated %}
+                            <div class="col">
+                                    <a href="/substitute/delete/{{ substitute.id }}/">
+                                        <i class="far fa-save"></i>REMOVE
+                                    </a>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor %}

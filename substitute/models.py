@@ -25,8 +25,8 @@ class Aliment(models.Model):
 
 
 class UserLinkToAlimentsTable(models.Model):
-    user_id = models.CharField(max_length=20, unique=False)
-    aliment_id = models.CharField(max_length=20, unique=False)
+    user_id = models.CharField(max_length=200, unique=False)
+    aliment_id = models.CharField(max_length=200, unique=False)
 
     def __str__(self):
         """
